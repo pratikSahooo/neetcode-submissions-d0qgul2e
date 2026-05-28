@@ -27,11 +27,11 @@ class Solution {
                 parentNode = true ;
             }
             else{
-              if(poped.right!=null){
-                  q.offer(poped.right);
-                }
               if(poped.left!=null){
                   q.offer(poped.left);
+                }
+              if(poped.right!=null){
+                  q.offer(poped.right);
                 }
             }
         }
