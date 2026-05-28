@@ -1,0 +1,52 @@
+/* Structure of binary tree node
+class Node {
+    int data;
+    Node left;
+    Node right;
+    Node(int data) {
+        this.data = data;
+        left = null;
+        right = null;
+    }
+}
+*/
+
+class Solution {
+    public static ArrayList<Integer> getCousins(Node root, Node node) {
+        // code here
+        Queue <Node> q =  new LinkedList<>();
+        ArrayList<Integer>list = new ArrayList<>();
+        q.offer(root);
+        while(!q.isEmpty()){
+        int size= q.size();
+        boolean parentNode = false ;
+          while(size>0){
+              Node poped = q.poll();
+              size--;
+            if(poped.right == node || poped.left == node){
+                parentNode = true ;
+            }
+            else{
+              if(poped.right!=null){
+                  q.offer(poped.right);
+                }
+              if(poped.left!=null){
+                  q.offer(poped.left);
+                }
+            }
+        }
+        if(parentNode){
+            while(!q.isEmpty()){
+                list.add(q.poll().data);
+            }
+            if (list.size() == 0) {
+                    list.add(-1);
+                }
+
+                return list;
+        }
+        }
+        list.add(-1);
+        return list;
+    }
+}
