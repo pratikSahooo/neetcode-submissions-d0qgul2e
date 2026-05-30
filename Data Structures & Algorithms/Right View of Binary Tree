@@ -29,7 +29,7 @@ class Solution {
                     q.offer(poped.right);
                 }
                 size--;
-                if(size == 1){
+                if(size == 0){
                     list.add(poped.data);
                 }
             }
