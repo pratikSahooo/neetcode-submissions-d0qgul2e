@@ -1,0 +1,33 @@
+import java.util.*;
+
+class MostFrequent {
+    // NOTE: Please do not modify this function
+    public static void main(String args[]) {
+        Scanner sc = new Scanner(System.in);
+        String s = sc.nextLine();
+
+        Object[] ans = mostFrequent(s);
+        System.out.println(ans[0] + " " + ans[1]);
+    }
+
+    // TODO: Implement this method
+    static Object[] mostFrequent(String s) {
+        int max = 0;
+        char key = '\0' ;
+        TreeMap<Character,Integer> m = new TreeMap<>();
+        for(char a : s.toCharArray()){
+            m.put(a,m.getOrDefault(a,0)+1);
+        }
+
+        for(Map.Entry<Character,Integer> entry : m.entrySet())
+        {
+            if(entry.getValue()>max){
+                max = entry.getValue();
+                key = entry.getKey() ;
+            }
+        }
+
+        return new Object[]{key,max};
+
+    }
+}
