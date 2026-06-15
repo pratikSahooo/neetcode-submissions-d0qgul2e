@@ -1,0 +1,74 @@
+/*
+Definition for Node
+class Node {
+    int data;
+    Node left, right;
+
+    Node(int val) {
+        data = val;
+        left = right = null;
+    }
+}
+*/
+
+class Solution {
+    ArrayList<Integer> boundaryTraversal(Node root) {
+        // code here
+        ArrayList<Integer> res = new ArrayList<>();
+        if(!isleaf(root)) res.add(root.data);
+        
+        leftBoundary(res,root);
+        leafNode(res,root);
+        rightBoundary(res,root);
+        
+        return res ;
+    }
+        
+        //left
+        public void leftBoundary(ArrayList <Integer> res ,Node root){
+            Node leftNode = root.left;
+            while(leftNode!=null){
+                if(isleaf(leftNode)){
+                    break;
+                }
+                res.add(leftNode.data);
+                    if(leftNode.left!=null)
+                    {leftNode=leftNode.left;}
+                    
+                    else leftNode = leftNode.right;
+            }
+        }
+
+        //right
+        public void rightBoundary(ArrayList <Integer> res ,Node root){
+            Node rightNode = root.right;
+            Stack<Integer> s = new Stack<>();
+            while(rightNode!=null){
+                
+                if(isleaf(rightNode)) break;
+                s.push(rightNode.data);
+                // res.add(rightNode.data);
+                    if(rightNode.right!=null) {rightNode=rightNode.right;}
+                    
+                    else rightNode = rightNode.left;
+            }
+            while(!s.isEmpty()){
+                res.add(s.pop());
+            }
+        }
+
+        //leaf
+        public void leafNode(ArrayList <Integer> res,Node root){
+            if (root == null) return;
+            
+            if(isleaf(root)) {res.add(root.data);}
+            
+            leafNode(res,root.left);
+            leafNode(res,root.right);
+        }
+        
+        public boolean isleaf(Node root){
+            return (root.right == null && root.left == null);
+        }
+        
+}
