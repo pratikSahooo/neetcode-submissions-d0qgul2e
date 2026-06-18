@@ -1,0 +1,44 @@
+/*
+Definition for Node
+class Node {
+    int data;
+    Node left, right;
+
+    Node(int val) {
+        data = val;
+        left = right = null;
+    }
+}
+*/
+
+class Solution {
+    public Node insert(Node root, int key) {
+        // code here
+        if(root == null) return new Node(key);
+        
+        Node temp = root ;
+        
+        while(temp!=null){
+            // Node node = new Node(key); 
+            if(key<temp.data){
+                if(temp.left==null){
+                    temp.left = new Node(key);
+                    break;
+                }
+                else{
+                    temp = temp.left;
+                }
+            }
+            else {
+                if(temp.right==null){
+                    temp.right = new Node(key);
+                    break ;
+                }
+                else{
+                    temp = temp.right;
+                }
+            }
+        }
+            return root ;
+    }
+}
