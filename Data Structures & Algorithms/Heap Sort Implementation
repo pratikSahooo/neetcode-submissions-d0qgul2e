@@ -7,14 +7,16 @@ class Solution {
 
         heapsize = arr.length;
 
-        buildheaptree(arr);
+        firstBuildheaptree(arr);
 
         for (int i = 0; i < arr.length - 1; i++) {
             maxsort(arr);
         }
     }
 
-    public void buildheaptree(int arr[]) {
+
+    //Impleamentations
+    public void firstBuildheaptree(int arr[]) {
 
         for (int i = heapsize / 2 - 1; i >= 0; i--) {
             heapify(i, arr);
@@ -29,11 +31,11 @@ class Solution {
 
         int max = arr[0];
         arr[0] = arr[heapsize - 1];
-        arr[heapsize - 1] = max;   // Fixed swap
+        arr[heapsize - 1] = max;   
 
         heapsize--;
 
-        heapify(0, arr);           // Fixed method call
+        heapify(0, arr);           
     }
 
     public void heapify(int i, int arr[]) {
