@@ -1,47 +1,65 @@
 class Solution {
 
-    int heapSize;
+    int heapsize;
 
+    // Function to sort an array using Heap Sort.
     public void heapSort(int arr[]) {
-        heapSize = arr.length;
 
-        buildHeap(arr);
+        heapsize = arr.length;
 
-        while (heapSize > 1) {
-            swap(0, heapSize - 1, arr);
-            heapSize--;
-            heapify(0, arr);
+        buildheaptree(arr);
+
+        for (int i = 0; i < arr.length - 1; i++) {
+            maxsort(arr);
         }
     }
 
-    public void buildHeap(int arr[]) {
-        for (int i = heapSize / 2 - 1; i >= 0; i--) {
+    public void buildheaptree(int arr[]) {
+
+        for (int i = heapsize / 2 - 1; i >= 0; i--) {
             heapify(i, arr);
         }
     }
 
+    public void maxsort(int arr[]) {
+
+        if (heapsize == 0) {
+            return;
+        }
+
+        int max = arr[0];
+        arr[0] = arr[heapsize - 1];
+        arr[heapsize - 1] = max;   // Fixed swap
+
+        heapsize--;
+
+        heapify(0, arr);           // Fixed method call
+    }
+
     public void heapify(int i, int arr[]) {
-        int largest = i;
+
+        int max = i;
+
         int left = 2 * i + 1;
         int right = 2 * i + 2;
 
-        if (left < heapSize && arr[left] > arr[largest]) {
-            largest = left;
+        if (left < heapsize && arr[left] > arr[max]) {
+            max = left;            // Fixed: store index
         }
 
-        if (right < heapSize && arr[right] > arr[largest]) {
-            largest = right;
+        if (right < heapsize && arr[right] > arr[max]) {
+            max = right;           // Fixed: store index
         }
 
-        if (largest != i) {
-            swap(largest, i, arr);
-            heapify(largest, arr);
+        if (max != i) {
+            swap(max, i, arr);
+            heapify(max, arr);     // Fixed recursive call
         }
     }
 
-    public void swap(int a, int b, int arr[]) {
-        int temp = arr[a];
-        arr[a] = arr[b];
-        arr[b] = temp;
+    public void swap(int one, int two, int arr[]) {
+        int temp = arr[one];
+        arr[one] = arr[two];
+        arr[two] = temp;
     }
 }
