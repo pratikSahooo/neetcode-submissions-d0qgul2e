@@ -1,56 +1,47 @@
 class Solution {
-    // Function to sort an array using Heap Sort.
+
+    int heapSize;
+
     public void heapSort(int arr[]) {
-        // code here
-        int heapsize = arr.length;
-        
-        buildheaptree(arr);
-        for(int i =0 ; i<heapsize-1 ; i++ ){
-            maxsort(arr);
+        heapSize = arr.length;
+
+        buildHeap(arr);
+
+        while (heapSize > 1) {
+            swap(0, heapSize - 1, arr);
+            heapSize--;
+            heapify(0, arr);
         }
-        
-        public void buildheaptree(int arr[]){
-            else{
-                for(int i= heapsize/2-1 ; i >= 0 ;i--){
-                    heapify(i,arr);
-                }
-            }
+    }
+
+    public void buildHeap(int arr[]) {
+        for (int i = heapSize / 2 - 1; i >= 0; i--) {
+            heapify(i, arr);
         }
-        public void maxsort(int arr[]){
-            if(heapsize==0){
-                return ;
-            }
-            else{
-                int max = arr[0];
-                arr[0] = arr[heapsize-1];
-                arr[heapsize-1] = arr[0];
-                heapsize--;
-                heapify[0];
-            }
+    }
+
+    public void heapify(int i, int arr[]) {
+        int largest = i;
+        int left = 2 * i + 1;
+        int right = 2 * i + 2;
+
+        if (left < heapSize && arr[left] > arr[largest]) {
+            largest = left;
         }
-        public void heapify (int i , int arr[]){
-            int max = i;
-            int left = 2*i+1;
-            int right = 2*i+2;
-            if(left<heapsize && arr[left] > arr[max]){
-                max = arr[left]
-            }
-            if(right<heapsize && arr[right] > arr[max]){
-                max = arr[left]
-            }
-            if(max!=i){
-                swap(max , i , arr);
-                heapify(i,arr);
-            }
-            
+
+        if (right < heapSize && arr[right] > arr[largest]) {
+            largest = right;
         }
-        
-        public void swap(int one , int two, int arr []){
-            int temp =  arr[one] ;
-            arr[one] = arr[two] ;
-            arr[two] = temp;
+
+        if (largest != i) {
+            swap(largest, i, arr);
+            heapify(largest, arr);
         }
-        
-        
+    }
+
+    public void swap(int a, int b, int arr[]) {
+        int temp = arr[a];
+        arr[a] = arr[b];
+        arr[b] = temp;
     }
 }
