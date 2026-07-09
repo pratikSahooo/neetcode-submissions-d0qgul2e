@@ -1,0 +1,56 @@
+class Solution {
+    // Function to sort an array using Heap Sort.
+    public void heapSort(int arr[]) {
+        // code here
+        int heapsize = arr.length;
+        
+        buildheaptree(arr);
+        for(int i =0 ; i<heapsize-1 ; i++ ){
+            maxsort(arr);
+        }
+        
+        public void buildheaptree(int arr[]){
+            else{
+                for(int i= heapsize/2-1 ; i >= 0 ;i--){
+                    heapify(i,arr);
+                }
+            }
+        }
+        public void maxsort(int arr[]){
+            if(heapsize==0){
+                return ;
+            }
+            else{
+                int max = arr[0];
+                arr[0] = arr[heapsize-1];
+                arr[heapsize-1] = arr[0];
+                heapsize--;
+                heapify[0];
+            }
+        }
+        public void heapify (int i , int arr[]){
+            int max = i;
+            int left = 2*i+1;
+            int right = 2*i+2;
+            if(left<heapsize && arr[left] > arr[max]){
+                max = arr[left]
+            }
+            if(right<heapsize && arr[right] > arr[max]){
+                max = arr[left]
+            }
+            if(max!=i){
+                swap(max , i , arr);
+                heapify(i,arr);
+            }
+            
+        }
+        
+        public void swap(int one , int two, int arr []){
+            int temp =  arr[one] ;
+            arr[one] = arr[two] ;
+            arr[two] = temp;
+        }
+        
+        
+    }
+}
