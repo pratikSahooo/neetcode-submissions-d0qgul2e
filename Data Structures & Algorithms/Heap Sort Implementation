@@ -9,12 +9,13 @@ class Solution {
 
         firstBuildheaptree(arr);
 
+        //after first top element found build the sorted array
         for (int i = 0; i < arr.length - 1; i++) {
             maxsort(arr);
         }
     }
 
-
+    //Find first top element
     //Impleamentations
     public void firstBuildheaptree(int arr[]) {
 
