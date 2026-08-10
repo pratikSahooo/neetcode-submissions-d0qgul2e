@@ -10,7 +10,22 @@
  */
 
 class Solution {
-    public ListNode cycleDetetctionNode(ListNode head) {
+    public boolean hasCycle(ListNode head) {
+        ListNode fast = head;
+        ListNode slow = head;
+        while(fast!=null && fast.next!=null){
+            slow = slow.next;
+            fast= fast.next.next;
+            if(slow==fast){
+                return true;
+            }
+        }
+        return false;
+    }
+
+    
+     // Finding Node where the cycle started not a part of question
+     public ListNode cycleDetectCycleStartNode(ListNode head) {
         ListNode fast = head;
         ListNode slow = head;
         boolean found = false;
@@ -30,17 +45,5 @@ class Solution {
             fast=fast.next;
         }
         return slow; 
-    }
-    public boolean hasCycle(ListNode head) {
-        ListNode fast = head;
-        ListNode slow = head;
-        while(fast!=null && fast.next!=null){
-            slow = slow.next;
-            fast= fast.next.next;
-            if(slow==fast){
-                return true;
-            }
-        }
-        return false;
     }
 }
