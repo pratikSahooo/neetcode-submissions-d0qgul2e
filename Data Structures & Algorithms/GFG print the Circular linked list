@@ -1,0 +1,14 @@
+class Solution {
+    public void printList(Node head) {
+        // code here
+        if(head==null){
+            return;
+        }
+        Node curr = head;
+       do {
+            System.out.println(curr.data);
+            curr = curr.next;
+          } while (curr != head);
+        
+    }
+}
