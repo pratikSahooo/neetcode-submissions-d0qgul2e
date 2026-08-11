@@ -1,0 +1,26 @@
+class Solution {
+    public int lengthOfLoop(Node head) {
+        // code here
+        Node Slow=  head;
+        Node fast=  head;
+        while(fast !=null and fast.next!=null){
+            slow= slow.next;
+            fast = fast.next.next;
+            if(slow == fast){
+                return CountNode(slow);
+            }
+        }
+        return 0;
+    }
+    
+    public int CountNode(Node slow){
+        int res = 1 ;
+        Node curr = slow;
+        while(curr.next != slow)
+        {
+            res ++;
+            curr =  curr.next;
+        }
+        return res;
+    }
+}
