@@ -1,0 +1,25 @@
+import java.util.function.Predicate;
+import java.util.*;
+
+class Solution {
+  static <T> Node<T> filter(Node<T> head, Predicate<T> p) {
+    Node<T> trav = head;
+    Node<T> first =  null;
+    Node<T> tail = null;
+    while(trav != null){
+      if(p.test(trav.data)){
+        Node<T>node = new Node<T>(trav.data);
+        if(first == null){
+            first =node ;
+            tail = node ;
+        }
+        else{
+          tail.next =node;
+          tail= tail.next;
+        }
+      }
+      trav = trav.next;
+    }
+      return first;
+  }
+}
