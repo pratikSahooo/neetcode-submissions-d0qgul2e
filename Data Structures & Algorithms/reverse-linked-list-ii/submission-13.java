@@ -15,6 +15,7 @@ class Solution {
         }
         ListNode leftNode= head;
         ListNode dummy = new ListNode(0,head);
+        //dummy is just for pointing head and after the algorith and travese the whole linkedlist from start..
         ListNode beforNext = dummy;
         for(int i = 1; i<left;i++){
             beforNext = leftNode;
