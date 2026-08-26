@@ -22,6 +22,7 @@ class Solution {
             while(!q.isEmpty()){
                 int size = q.size();
                 Integer [] arr = new Integer[size];
+                //level wise count node and fill the queue with new node
                 for(int i = 0 ; i <size ; i++){
                     TreeNode poped = q.poll();
                     arr[i] = poped.val;
