@@ -16,9 +16,12 @@ class Solution {
         // code here
         ArrayList<Integer> res = new ArrayList<>();
         if(!isleaf(root)) res.add(root.data);
-        
+
+        // go to left find all the boundary even the skewed right inside the left nodes and store in list till leaf dont store leaf , once found leaf break
         leftBoundary(res,root);
+        // store all the leaf in the tree from left bottom to right bottom
         leafNode(res,root);
+        //skip the right bottom and store the rest of all in right boundary nodes till leaf dont store leaf
         rightBoundary(res,root);
         
         return res ;
@@ -42,6 +45,7 @@ class Solution {
         //right
         public void rightBoundary(ArrayList <Integer> res ,Node root){
             Node rightNode = root.right;
+            // why in stack we need the reverse order to maintain the linear one way npundary starting from left traversing to right...
             Stack<Integer> s = new Stack<>();
             while(rightNode!=null){
                 
