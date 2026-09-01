@@ -1,0 +1,48 @@
+class SpiralMatrixII {
+    public static void main(String args[]) {
+        Scanner sc = new Scanner(System.in);
+        int n = sc.nextInt();
+        int result[][] = spiralMatrixII(n);
+
+        for (int i = 0; i < n; i++) {
+            for (int j = 0; j < n; j++) {
+                System.out.print(result[i][j] + " ");
+            }
+            System.out.println();
+        }
+    }
+
+    static int[][] spiralMatrixII(int n) {
+        int [][] arr = new int[n][n];
+        int top = 0;
+        int left = 0 ;
+        int right = n-1;
+        int bottom = n-1;
+        int count = 1 ;
+        while(top<=bottom && left <= right){
+        for(int i = left ; i<=right;i++){
+            arr[top][i] = count ;
+            count++;
+        }
+        top++;
+        for(int j= top; j<=bottom;j++){
+            arr[j][right] = count ;
+            count++;
+        }
+        right--;
+        int k = right;
+        while(k>=left){
+            arr[bottom][k] = count ;
+            count++;
+            k--;
+        }
+        bottom--;
+        for(int l =bottom;l>=top;l--){
+            arr[l][left] = count;
+            count++;
+        }
+        left++;
+        }
+        return arr ;
+    }
+}
