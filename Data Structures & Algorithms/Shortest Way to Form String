@@ -1,0 +1,101 @@
+import java.util.*;
+import java.lang.*;
+
+
+class Solution {
+public static int shortestWayToFormString(String source, String target) {
+
+    Set<Character> set = new HashSet<>();
+
+    for (int i = 0; i < source.length(); i++) {
+        set.add(source.charAt(i));
+    }
+
+    // If target contains a character not present in source
+    // it can never be formed.
+    for (int i = 0; i < target.length(); i++) {
+        if (!set.contains(target.charAt(i))) {
+            return -1;
+        }
+    }
+
+    int i = 0; // source pointer
+    int j = 0; // target pointer
+    int count = 0;
+
+    while (j < target.length()) {
+
+        i = 0;
+        count++;
+
+        while (i < source.length() && j < target.length()) {
+
+            if (source.charAt(i) == target.charAt(j)) {
+                i++;
+                j++;
+            } else {
+                i++;
+            }
+        }
+    }
+
+    return count;
+}
+}
+
+//Binary search method less efficient
+
+/*class Solution {
+    public static int shortestWayToFormString(String source, String target) {
+        // WRITE YOUR BRILLIANT CODE HERE
+        Map<Character,Integer> map = new HashMap<>();
+        for(int i = 0 ;i<source.length;i++){
+            map.put(source.charAt(i),map.getOrDefault(source.charAt(i),0)+1);
+        }
+        for(int i = 0 ;i<target.length();i++){
+            if(!map.containsKey(target.charAt(i))){
+                return -1;
+            }
+        }
+        // max substring formatiojn possibility count
+        int right = target.length();
+        int left = 1 ;
+        int mid = 0 ;
+        while(left<right){
+            mid = left+(right-left)/2;
+            if(isPossibleMin(mid,left,right,source,target)){
+                minAns = mid;
+                right = mid-1;
+            }
+            else{
+                left = mid+1;
+            }
+        }
+        return mid;
+    }
+
+    public boolean isPossibleMin(int count , int left, int right,String source,String target){
+        for (int c = 0; c < count && targetPointer < target.length(); c++) { 
+            int sourcePointer = 0; 
+            // Two-pointer comparison 
+            while (sourcePointer < source.length() && targetPointer < target.length()) { 
+                if (source.charAt(sourcePointer) == target.charAt(targetPointer)) { 
+                    // Character matched 
+                    sourcePointer++; targetPointer++; 
+                } else { // Character doesn't match, // move only in source 
+                    sourcePointer++; 
+                } 
+            } 
+        } // If we consumed the entire target, // 'count' copies of source were sufficient. 
+        return targetPointer == target.length(); 
+    } 
+}*/
+
+ public static void main(String[] args) {
+        java.util.Scanner scanner = new java.util.Scanner(System.in);
+        String source = scanner.nextLine();
+        String target = scanner.nextLine();
+        scanner.close();
+        int res = shortestWayToFormString(source, target);
+        System.out.println(res);
+    }
