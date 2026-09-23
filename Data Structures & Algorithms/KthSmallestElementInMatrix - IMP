@@ -1,0 +1,58 @@
+class KthSmallestElementInMatrix{
+    public static void main(String args[]){
+        Scanner sc = new Scanner(System.in);
+        int n = sc.nextInt();
+        int k = sc.nextInt();
+        List<ArrayList<Integer>>Matrix = new ArrayList<ArrayList<Integer>>();
+        for (int i = 0; i < n; i++) {
+            ArrayList<Integer>row = new ArrayList<>();
+            for (int j = 0; j < n; j++) {
+                row.add(sc.nextInt());
+            }
+            Matrix.add(row);
+        }
+        int ans = kthSmallestElementInMatrix(Matrix,k);
+        System.out.print(ans);
+    }
+
+    // This is a question of binary search on answer answer is to find the kth smallest number in matrix and we make a whole range of array 
+    // starting from minimum number in matrix (left) to max number possible in matrix (right) .
+
+    static int kthSmallestElementInMatrix(List<ArrayList<Integer>> matrix, int k) {
+        int n = matrix.size();
+        int left = matrix.get(0).get(0);
+        int right = matrix.get(n - 1).get(n - 1);
+        int ans = -1;
+        while (left <= right) {
+            int mid = left + (right - left) / 2;
+            if (possibleNumber(matrix, mid) >= k) {
+                ans = mid;
+                right = mid - 1;
+            } else {
+                left = mid + 1;
+            }
+        }
+        return ans;
+        }
+
+       // and then we check the total number that how many numbers are smaller and equal than the the selected number from answer array
+       //if it is greater or equal record it and  lets find the even lesser 
+
+       static int possibleNumber(List<ArrayList<Integer>> matrix, int number) {
+        int n = matrix.size();
+        int row = 0;
+        int col = n - 1;
+        int count = 0;
+        while (row < n && col >= 0) {
+            if (matrix.get(row).get(col) <= number) {
+            // if true then take total numbers of elsements in that column means (column count of that row/number of element in that row) to count
+                count += col + 1;
+                row++;
+            } else {
+            // else skip that whole column cause the numbers in the whole column will be greater than the number
+                col--;
+            }
+        }
+        return count;
+        }
+}
