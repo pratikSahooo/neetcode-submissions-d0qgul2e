@@ -1,0 +1,48 @@
+import java.io.*;
+import java.util.*;
+
+public class RotateImage {
+    public void rotateImage(int[][] matrix) {
+    int n = matrix.length;
+    // Step 1: Transpose :- start from swaping one side of the diagonal
+    for (int i = 0; i < n; i++) {
+        for (int j = i + 1; j < n; j++) {
+            int temp = matrix[i][j];
+            matrix[i][j] = matrix[j][i];
+            matrix[j][i] = temp;
+        }
+    }
+    // Step 2: and then reverse every row to get the answer rotated by 90 
+    for (int i = 0; i < n; i++) {
+        int left = 0;
+        int right = n - 1;
+        while (left < right) {
+            int temp = matrix[i][left];
+            matrix[i][left] = matrix[i][right];
+            matrix[i][right] = temp;
+            left++;
+            right--;
+        }
+    }
+    }
+
+    public static void main(String[] args) throws IOException {
+        Scanner scanner = new Scanner(System.in);
+        int matrixSize = scanner.nextInt();
+        int[][] matrix = new int[matrixSize][matrixSize];
+        for (int i = 0; i < matrixSize; ++i) {
+            for (int j = 0; j < matrixSize; ++j) {
+                matrix[i][j] = scanner.nextInt();
+            }
+        }
+        scanner.close();
+
+        new RotateImage().rotateImage(matrix);
+        for (int i = 0; i < matrixSize; ++i) {
+            for (int j = 0; j < matrixSize; ++j) {
+                System.out.print(matrix[i][j] + " ");
+            }
+            System.out.println();
+        }
+    }
+}
